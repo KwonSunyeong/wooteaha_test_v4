@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOOTAEHA ANSEUNGKYUNG — Premium</title>
+
+<!-- ===================== 스타일 및 폰트 설정 ===================== -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 영문 포인트 장식용 폰트 (Cinzel) -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- 국문/영문 기본 본문 폰트 (Pretendard) -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          mellow: {
+            black: '#1A1A1A',       /* 메인 텍스트 및 다크 포인트 */
+            darkgray: '#444444',    /* 서브 텍스트 */
+            gray: '#888888',        /* 부가 설명 */
+            lightgray: '#E8E8E8',   /* 얇은 선 라인 색상 */
+            bg: '#F9F9F9',          /* 차분한 오프화이트 배경 */
+            accent: '#E5A9A9',      /* 요청하신 핑크 포인트 컬러 */
+          }
+        },
+        fontFamily: {
+          sans: ['"Pretendard Variable"', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+          cinzel: ['Cinzel', 'serif'],
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  body { 
+    background-color: #FFFFFF; 
+    color: #1A1A1A;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+  
+  /* 스크롤바 숨김 처리 */
+  ::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* 단정한 네비게이션 라인 */
+  .anchor-nav a { position: relative; padding-bottom: 4px; transition: color 0.3s; }
+  .anchor-nav a::after { 
+    content: ''; position: absolute; bottom: 0; left: 0; 
+    width: 0; height: 1.5px; background: #E5A9A9; transition: width 0.4s ease; 
+  }
+  .anchor-nav a:hover, .anchor-nav a.active { color: #1A1A1A; font-weight: 500; }
+  .anchor-nav a:hover::after, .anchor-nav a.active::after { width: 100%; }
+
+  /* 호버 효과 모음 */
+  .row-hover { transition: background-color 0.3s ease; }
+  .row-hover:hover { background-color: rgba(229, 169, 169, 0.05); } /* 포인트 컬러 5% 투명도 적용 */
+  .img-zoom { overflow: hidden; }
+  .img-zoom img { transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .group:hover .img-zoom img { transform: scale(1.05); }
+
+  /* 시설소개 가로 스크롤 레이아웃 전용 클래스 */
+  .align-left-edge { padding-left: 1.5rem; }
+  .align-right-edge { padding-right: 1.5rem; }
+  @media (min-width: 1024px) {
+    .align-left-edge { padding-left: max(4rem, calc(50vw - 800px + 4rem)); }
+    .align-right-edge { padding-right: max(4rem, calc(50vw - 800px + 4rem)); }
+  }
+</style>
+</head>
+<body class="font-sans selection:bg-mellow-accent selection:text-white">
+
+  <!-- 01. 헤더 -->
+  <header id="header" class="fixed top-0 left-0 w-full z-50 px-6 lg:px-[160px] py-6 flex justify-between items-center bg-white/95 backdrop-blur-md border-b border-mellow-lightgray transition-all duration-300">
+    <div class="flex flex-col">
+      <span class="font-cinzel text-xl md:text-2xl font-semibold tracking-[0.2em] text-mellow-black">WOOTEAHA SKIN</span>
+      <span class="font-cinzel text-[10px] tracking-[0.2em] text-mellow-gray mt-1">SINCE 1975</span>
+    </div>
+    <nav id="navLinks" class="anchor-nav hidden lg:flex space-x-12 text-[14px] tracking-[0.1em] font-light text-mellow-gray uppercase">
+      <a href="#">의료진안내</a>
+      <a href="#floor-guide">층별안내</a>
+      <a href="#info">공지 및 진료안내</a>
+      <a href="#map">오시는길</a>
+    </nav>
+  </header>
+
+  <main class="relative w-full pt-28">
+
+    <!-- 02. 메인 히어로 섹션 (테스트 사이트 V3 레이아웃 반영 - 2단 분할 및 영상 하단 배너 배치) -->
+    <section id="hero" class="relative w-full pt-12 pb-24 lg:pt-20 lg:pb-32 px-6 lg:px-[160px] bg-white overflow-hidden">
+      
+      <!-- 백그라운드 텍스트 -->
+      <div class="hidden md:block absolute right-[-2%] top-[15%] font-cinzel text-[22vw] font-bold text-[#F5F5F5] select-none pointer-events-none -z-10 leading-none">
+        1975
+      </div>
+      
+      <div class="max-w-[1920px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-center lg:items-start z-10 relative">
+        
+        <!-- 좌측: 텍스트 콘텐츠 -->
+        <div class="w-full lg:w-1/2 flex flex-col justify-center h-full pt-4 lg:pt-10">
+          <div class="inline-flex items-center space-x-4 mb-8 md:mb-10 group cursor-pointer">
+            <div class="w-10 h-[1px] bg-mellow-black group-hover:w-16 transition-all duration-500"></div>
+            <span class="font-cinzel text-[12px] md:text-[14px] tracking-[0.25em] text-mellow-accent uppercase font-medium">The 50-Year Heritage</span>
+          </div>
+
+          <h1 class="text-[36px] md:text-[56px] lg:text-[68px] font-light text-mellow-black leading-[1.25] tracking-tight mb-8 md:mb-10">
+            1975년 이래 피부과 진료를 이어온<br>
+            <span class="text-mellow-accent font-semibold">피부과의 자존심.</span>
+          </h1>
+
+          <div class="flex flex-col gap-10 border-l border-mellow-lightgray pl-6 mb-10 lg:mb-0">
+            <p class="text-[15px] md:text-[17px] text-mellow-darkgray font-light leading-[1.8] max-w-xl tracking-wide">
+              피부 본연의 결을 맑게 깨우는 정교한 메디컬 케어와 타협 없는 안전을 지향합니다.<br class="hidden xl:block">
+              오직 피부의 본질에만 집중하는 정직함을 기준으로, 수십 년간 대를 이어 찾아오는<br class="hidden xl:block">
+              가장 신뢰할 수 있는 공간입니다.
+            </p>
+            
+            <div>
+              <a href="#" class="inline-flex items-center space-x-3 text-[13px] tracking-[0.2em] text-mellow-black font-medium uppercase border-b border-mellow-black pb-1 hover:text-mellow-accent hover:border-mellow-accent transition-all">
+                <span class="font-cinzel">Explore History</span>
+                <span>➔</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측: 영상 및 배너 영역 -->
+        <div class="w-full lg:w-1/2 flex flex-col gap-6">
+          
+          <!-- 영상 영역 -->
+          <div class="relative w-full aspect-[4/3] md:aspect-video bg-mellow-bg overflow-hidden border border-mellow-lightgray shadow-sm group">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-all duration-700">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-water-ripples-in-a-pool-1188-large.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- 하단 미용 시술 배너 (영상 하단으로 편입) -->
+          <div id="heroBanner" class="w-full bg-white border border-mellow-lightgray p-6 md:p-8 flex flex-col xl:flex-row items-start xl:items-center justify-between shadow-sm group cursor-pointer hover:border-mellow-accent transition-all duration-700">
+            <div class="flex items-center gap-5">
+              <div class="w-12 h-12 bg-mellow-accent/10 border border-mellow-accent/20 flex items-center justify-center shrink-0 rounded-full">
+                <span class="font-cinzel text-mellow-accent text-lg font-semibold">A</span>
+              </div>
+              <div>
+                <p class="font-cinzel text-[11px] md:text-[12px] tracking-[0.2em] text-mellow-accent font-medium mb-1">AESTHETIC CLINIC</p>
+                <h3 class="text-[17px] md:text-[19px] text-mellow-black font-medium">피부 본연의 광채를 깨우는 프리미엄 뷰티 솔루션</h3>
+              </div>
+            </div>
+            <div class="mt-5 xl:mt-0 flex items-center gap-4 w-full xl:w-auto justify-end">
+              <span class="text-[14px] text-mellow-darkgray group-hover:text-mellow-accent transition-colors font-light whitespace-nowrap">이달의 프로모션 확인하기</span>
+              <div class="w-10 h-10 border border-mellow-lightgray rounded-full flex items-center justify-center group-hover:bg-mellow-accent group-hover:border-mellow-accent group-hover:text-white transition-all duration-300">
+                <span class="text-sm">➔</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- 03. 통계 섹션 -->
+    <div class="px-6 lg:px-[160px] pb-16 max-w-[1920px] mx-auto bg-white pt-10">
+      <section id="stats" class="mb-32">
+        <div class="grid grid-cols-2 md:grid-cols-4 border-t border-b border-mellow-lightgray">
+          <div class="p-10 md:p-14 text-center border-r border-mellow-lightgray border-b md:border-b-0 hover:bg-mellow-accent/5 transition-colors duration-500">
+            <span class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-gray block mb-3 font-medium">CLINICAL YEARS</span>
+            <span class="font-cinzel text-[40px] md:text-[48px] text-mellow-black">50<span class="text-[18px] text-mellow-accent ml-1 font-sans font-medium">+</span></span>
+          </div>
+          <div class="p-10 md:p-14 text-center border-b md:border-b-0 md:border-r border-mellow-lightgray hover:bg-mellow-accent/5 transition-colors duration-500">
+            <span class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-gray block mb-3 font-medium">SAFETY RATE</span>
+            <span class="font-cinzel text-[40px] md:text-[48px] text-mellow-black">99.9<span class="text-[18px] text-mellow-accent ml-1 font-sans font-medium">%</span></span>
+          </div>
+          <div class="p-10 md:p-14 text-center border-r border-mellow-lightgray hover:bg-mellow-accent/5 transition-colors duration-500">
+            <span class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-gray block mb-3 font-medium">TOTAL CASES</span>
+            <span class="font-cinzel text-[40px] md:text-[48px] text-mellow-black">340<span class="text-[18px] text-mellow-accent ml-1 font-sans font-medium">k</span></span>
+          </div>
+          <div class="p-10 md:p-14 text-center hover:bg-mellow-accent/5 transition-colors duration-500">
+            <span class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-gray block mb-3 font-medium">SPECIALISTS</span>
+            <span class="font-cinzel text-[40px] md:text-[48px] text-mellow-black">100<span class="text-[18px] text-mellow-accent ml-1 font-sans font-medium">%</span></span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 04. 시그니처 레이저 시술 -->
+    <section id="facility" class="mb-32 w-full flex flex-col lg:flex-row lg:items-end align-left-edge overflow-hidden bg-white pb-10">
+      <div class="w-full lg:w-[420px] shrink-0 pr-6 lg:pr-16 mb-10 lg:mb-0">
+        <span class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-accent font-semibold block mb-4 uppercase">Signature</span>
+        <h2 class="text-[32px] md:text-[42px] font-semibold text-mellow-black tracking-tight mb-6 leading-tight">
+          시그니처<br class="hidden lg:block"> 레이저 시술
+        </h2>
+        <p class="text-[15px] text-mellow-gray font-light leading-[1.8] mb-12 hidden lg:block">
+          피부 본연의 아름다움을 되찾아 드리는<br>
+          우태하한승경만의 하이엔드 레이저 솔루션.
+        </p>
+        
+        <div class="flex items-center space-x-2 hidden lg:flex">
+          <button id="prevBtn" class="w-12 h-12 border border-mellow-lightgray flex items-center justify-center text-mellow-black hover:bg-mellow-accent hover:border-mellow-accent hover:text-white transition-colors focus:outline-none">
+            <span class="text-xl font-light">‹</span>
+          </button>
+          <button id="nextBtn" class="w-12 h-12 border border-mellow-lightgray flex items-center justify-center text-mellow-black hover:bg-mellow-accent hover:border-mellow-accent hover:text-white transition-colors focus:outline-none">
+            <span class="text-xl font-light">›</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="w-full flex-1 min-w-0 relative">
+        <div id="facilityTrack" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-8 align-right-edge">
+          
+          <!-- 카드 -->
+          <div class="bg-white border border-mellow-lightgray w-[80vw] sm:w-[360px] shrink-0 snap-start group cursor-pointer flex flex-col hover:border-mellow-accent transition-colors duration-300">
+            <div class="img-zoom h-[320px] overflow-hidden bg-mellow-bg relative">
+              <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="피코슈어 프로" class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-all duration-700" />
+            </div>
+            <div class="p-8 flex-1 flex flex-col justify-center border-t border-mellow-lightgray group-hover:border-mellow-accent transition-colors duration-300 bg-white">
+              <span class="font-cinzel text-[11px] tracking-[0.2em] text-mellow-accent block mb-2 font-semibold">NO. 01</span>
+              <h3 class="text-[20px] font-medium text-mellow-black">피코슈어 프로</h3>
+              <p class="text-[14px] text-mellow-gray mt-2 font-light">색소 / 잡티 개선 솔루션</p>
+            </div>
+          </div>
+          
+          <div class="bg-white border border-mellow-lightgray w-[80vw] sm:w-[360px] shrink-0 snap-start group cursor-pointer flex flex-col hover:border-mellow-accent transition-colors duration-300">
+            <div class="img-zoom h-[320px] overflow-hidden bg-mellow-bg relative">
+              <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="써마지 FLX" class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-all duration-700" />
+            </div>
+            <div class="p-8 flex-1 flex flex-col justify-center border-t border-mellow-lightgray group-hover:border-mellow-accent transition-colors duration-300 bg-white">
+              <span class="font-cinzel text-[11px] tracking-[0.2em] text-mellow-accent block mb-2 font-semibold">NO. 02</span>
+              <h3 class="text-[20px] font-medium text-mellow-black">써마지 FLX</h3>
+              <p class="text-[14px] text-mellow-gray mt-2 font-light">프리미엄 탄력 / 타이트닝</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-mellow-lightgray w-[80vw] sm:w-[360px] shrink-0 snap-start group cursor-pointer flex flex-col hover:border-mellow-accent transition-colors duration-300">
+            <div class="img-zoom h-[320px] overflow-hidden bg-mellow-bg relative">
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="울쎄라" class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-all duration-700" />
+            </div>
+            <div class="p-8 flex-1 flex flex-col justify-center border-t border-mellow-lightgray group-hover:border-mellow-accent transition-colors duration-300 bg-white">
+              <span class="font-cinzel text-[11px] tracking-[0.2em] text-mellow-accent block mb-2 font-semibold">NO. 03</span>
+              <h3 class="text-[20px] font-medium text-mellow-black">울쎄라</h3>
+              <p class="text-[14px] text-mellow-gray mt-2 font-light">초음파 윤곽 / 리프팅</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-mellow-lightgray w-[80vw] sm:w-[360px] shrink-0 snap-start group cursor-pointer flex flex-col hover:border-mellow-accent transition-colors duration-300">
+            <div class="img-zoom h-[320px] overflow-hidden bg-mellow-bg relative">
+              <img src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80" alt="브이빔 퍼펙타" class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-all duration-700" />
+            </div>
+            <div class="p-8 flex-1 flex flex-col justify-center border-t border-mellow-lightgray group-hover:border-mellow-accent transition-colors duration-300 bg-white">
+              <span class="font-cinzel text-[11px] tracking-[0.2em] text-mellow-accent block mb-2 font-semibold">NO. 04</span>
+              <h3 class="text-[20px] font-medium text-mellow-black">브이빔 퍼펙타</h3>
+              <p class="text-[14px] text-mellow-gray mt-2 font-light">홍조 / 혈관 특화 치료</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. 층별 공간 안내 -->
+    <div class="px-6 lg:px-[160px] pb-10 max-w-[1920px] mx-auto bg-white pt-10">
+      <section id="floor-guide" class="mb-32">
+        
+        <div class="mb-10 flex flex-col">
+          <span class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-accent font-semibold block mb-2 uppercase">Space Guide</span>
+          <h2 class="text-[32px] md:text-[42px] font-semibold text-mellow-black tracking-tight mb-2">공간 안내</h2>
+          <p class="text-[14px] text-mellow-gray font-light">※ 접수 및 안내는 2층 데스크를 찾아주세요.</p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row border border-mellow-lightgray bg-white relative">
+          
+          <!-- Left: 텍스트 리스트 -->
+          <div class="w-full lg:w-1/2 flex flex-col justify-center order-2 lg:order-1">
+            <div class="floor-item group cursor-pointer flex items-center justify-between border-b border-mellow-lightgray p-8 lg:p-10 transition-colors bg-white hover:bg-mellow-accent/5" data-target="img-2f">
+              <div class="flex items-center gap-8">
+                <span class="floor-number font-cinzel text-[36px] text-mellow-black transition-colors w-12 text-center font-medium">2F</span>
+                <h3 class="text-[18px] md:text-[20px] font-medium text-mellow-black transition-colors">접수 안내 및 진료실</h3>
+              </div>
+              <span class="text-mellow-accent font-bold opacity-100 group-hover:translate-x-1 transition-all">➔</span>
+            </div>
+            
+            <div class="floor-item group cursor-pointer flex items-center justify-between border-b border-mellow-lightgray p-8 lg:p-10 transition-colors bg-white hover:bg-mellow-accent/5" data-target="img-3f">
+              <div class="flex items-center gap-8">
+                <span class="floor-number font-cinzel text-[36px] text-mellow-lightgray transition-colors w-12 text-center font-medium">3F</span>
+                <h3 class="text-[18px] md:text-[20px] font-normal text-mellow-gray transition-colors group-hover:text-mellow-black group-hover:font-medium">회복 및 라운지</h3>
+              </div>
+              <span class="text-mellow-accent font-bold opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">➔</span>
+            </div>
+            
+            <div class="floor-item group cursor-pointer flex items-center justify-between border-b border-mellow-lightgray p-8 lg:p-10 transition-colors bg-white hover:bg-mellow-accent/5" data-target="img-4f">
+              <div class="flex items-center gap-8">
+                <span class="floor-number font-cinzel text-[36px] text-mellow-lightgray transition-colors w-12 text-center font-medium">4F</span>
+                <h3 class="text-[18px] md:text-[20px] font-normal text-mellow-gray transition-colors group-hover:text-mellow-black group-hover:font-medium">스킨케어 센터</h3>
+              </div>
+              <span class="text-mellow-accent font-bold opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">➔</span>
+            </div>
+            
+            <div class="floor-item group cursor-pointer flex items-center justify-between p-8 lg:p-10 transition-colors bg-white hover:bg-mellow-accent/5" data-target="img-5f">
+              <div class="flex items-center gap-8">
+                <span class="floor-number font-cinzel text-[36px] text-mellow-lightgray transition-colors w-12 text-center font-medium">5F</span>
+                <h3 class="text-[18px] md:text-[20px] font-normal text-mellow-gray transition-colors group-hover:text-mellow-black group-hover:font-medium">스튜디오 및 컨시어지</h3>
+              </div>
+              <span class="text-mellow-accent font-bold opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">➔</span>
+            </div>
+          </div>
+
+          <!-- Right: 이미지 -->
+          <div class="w-full lg:w-1/2 shrink-0 aspect-[4/3] lg:aspect-auto relative bg-mellow-bg border-b lg:border-b-0 lg:border-l border-mellow-lightgray overflow-hidden order-1 lg:order-2">
+            <div id="floorImageContainer" class="absolute inset-0 w-full h-full">
+              <img id="img-2f" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="2F" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-100 z-10">
+              <img id="img-3f" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80" alt="3F" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 z-0">
+              <img id="img-4f" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1000&q=80" alt="4F" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 z-0">
+              <img id="img-5f" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1000&q=80" alt="5F" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 z-0">
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 06. 공지사항 & 진료시간 -->
+      <section id="info" class="mb-32">
+        <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 w-full">
+          
+          <!-- 공지사항 -->
+          <div class="w-full lg:flex-[6]">
+            <div class="flex justify-between items-end border-b-2 border-mellow-black pb-4 mb-6">
+              <h2 class="font-cinzel text-[24px] font-semibold text-mellow-black">NOTICE</h2>
+              <a href="#" class="text-[12px] text-mellow-gray hover:text-mellow-accent transition-colors tracking-widest uppercase font-medium">+ View All</a>
+            </div>
+            
+            <div class="flex flex-col">
+              <a href="#" class="row-hover flex justify-between items-center py-5 border-b border-mellow-lightgray transition-colors px-2 group">
+                <div class="flex items-center gap-4 flex-1 min-w-0">
+                  <span class="text-[11px] font-medium px-3 py-1 bg-mellow-black text-white shrink-0">공지</span>
+                  <span class="text-[15px] text-mellow-black font-medium truncate group-hover:text-mellow-accent transition-colors">2026년 하절기 진료시간 변경 안내</span>
+                </div>
+                <span class="font-cinzel text-[13px] text-mellow-gray shrink-0 ml-4 font-medium">2026.06.20</span>
+              </a>
+              <a href="#" class="row-hover flex justify-between items-center py-5 border-b border-mellow-lightgray transition-colors px-2 group">
+                <div class="flex items-center gap-4 flex-1 min-w-0">
+                  <span class="text-[11px] font-medium px-3 py-1 bg-mellow-accent/10 text-mellow-accent border border-mellow-accent/20 shrink-0">장비</span>
+                  <span class="text-[15px] text-mellow-black font-medium truncate group-hover:text-mellow-accent transition-colors">신규 하이엔드 레이저 장비 도입 안내</span>
+                </div>
+                <span class="font-cinzel text-[13px] text-mellow-gray shrink-0 ml-4 font-medium">2026.06.12</span>
+              </a>
+              <a href="#" class="row-hover flex justify-between items-center py-5 border-b border-mellow-lightgray transition-colors px-2 group">
+                <div class="flex items-center gap-4 flex-1 min-w-0">
+                  <span class="text-[11px] font-medium px-3 py-1 bg-mellow-bg border border-mellow-lightgray text-mellow-darkgray shrink-0">안내</span>
+                  <span class="text-[15px] text-mellow-black font-medium truncate group-hover:text-mellow-accent transition-colors">개인정보 처리방침 개정 사전 고지</span>
+                </div>
+                <span class="font-cinzel text-[13px] text-mellow-gray shrink-0 ml-4 font-medium">2026.05.28</span>
+              </a>
+              <a href="#" class="row-hover flex justify-between items-center py-5 border-b border-mellow-lightgray transition-colors px-2 group">
+                <div class="flex items-center gap-4 flex-1 min-w-0">
+                  <span class="text-[11px] font-medium px-3 py-1 bg-mellow-bg border border-mellow-lightgray text-mellow-darkgray shrink-0">안내</span>
+                  <span class="text-[15px] text-mellow-black font-medium truncate group-hover:text-mellow-accent transition-colors">창립 50주년 기념 휴진 일정 공지</span>
+                </div>
+                <span class="font-cinzel text-[13px] text-mellow-gray shrink-0 ml-4 font-medium">2026.05.02</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 진료시간 -->
+          <div class="w-full lg:flex-[4]">
+            <div class="flex justify-between items-end border-b-2 border-mellow-black pb-4 mb-6">
+              <h2 class="font-cinzel text-[24px] font-semibold text-mellow-black">CLINIC HOURS</h2>
+            </div>
+            
+            <div class="bg-white border border-mellow-lightgray p-8 md:p-10 shadow-sm">
+              <ul class="space-y-4 text-[15px]">
+                <li class="flex justify-between items-center border-b border-mellow-lightgray/60 pb-4">
+                  <span class="font-semibold text-mellow-black flex items-center gap-2">월 · 수 · 금 <span class="bg-mellow-accent text-white text-[10px] px-2 py-0.5 tracking-wider font-medium rounded-full">TODAY</span></span>
+                  <span class="font-cinzel text-[15px] font-semibold text-mellow-black">10:00 – 19:00</span>
+                </li>
+                <li class="flex justify-between items-center border-b border-mellow-lightgray/60 pb-4">
+                  <span class="font-medium text-mellow-black">화 · 목 <span class="text-[12px] text-mellow-accent ml-1 font-normal">(야간)</span></span>
+                  <span class="font-cinzel text-[15px] font-medium text-mellow-darkgray">10:00 – 20:00</span>
+                </li>
+                <li class="flex justify-between items-center border-b border-mellow-lightgray/60 pb-4">
+                  <span class="font-medium text-mellow-black">토요일</span>
+                  <span class="font-cinzel text-[15px] font-medium text-mellow-darkgray">10:00 – 15:00</span>
+                </li>
+                <li class="flex justify-between items-center border-b border-mellow-lightgray/60 pb-4">
+                  <span class="text-mellow-gray font-light">점심시간</span>
+                  <span class="font-cinzel text-[15px] text-mellow-gray font-light">13:00 – 14:00</span>
+                </li>
+                <li class="flex justify-between items-center pb-2">
+                  <span class="text-mellow-gray font-light">일요일 · 공휴일</span>
+                  <span class="text-mellow-gray font-light">휴진</span>
+                </li>
+              </ul>
+              <div class="mt-8 pt-6 border-t border-mellow-lightgray">
+                <button class="font-cinzel w-full bg-mellow-black text-white py-4 text-[14px] tracking-[0.1em] hover:bg-mellow-accent transition-all uppercase font-semibold">Reservation</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 예약 안내 블록 -->
+        <div class="mt-16 w-full bg-mellow-accent/5 border border-mellow-accent/20 p-8 md:p-10 flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <span class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-accent font-semibold block mb-2">RESERVATION</span>
+            <p class="text-[20px] md:text-[22px] font-semibold text-mellow-black mb-2">초진은 사전 예약 후 방문을 안내드립니다.</p>
+            <p class="text-[14px] text-mellow-gray font-light">진료 마감 30분 전까지 접수해주세요. 시술 상담은 평균 20–30분 소요됩니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07. 오시는 길 -->
+      <section id="map" class="mb-32">
+        <div class="flex flex-col mb-10">
+          <span class="font-cinzel text-[12px] text-mellow-accent font-semibold mb-2 uppercase tracking-[0.2em]">Location</span>
+          <h2 class="text-[28px] md:text-[36px] font-semibold text-mellow-black tracking-tight">오시는 길</h2>
+        </div>
+
+        <div class="border border-mellow-lightgray bg-white grid lg:grid-cols-[1fr_360px] xl:grid-cols-[1fr_400px] relative z-10 group shadow-sm">
+          
+          <!-- 좌측 지도 영역 -->
+          <div class="relative h-[320px] md:h-[460px] lg:h-[500px] bg-[#f5f5f5] border-b lg:border-b-0 lg:border-r border-mellow-lightgray overflow-hidden">
+            <div id="kakaoMap" class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center"></div>
+            
+            <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <div class="w-12 h-12 bg-mellow-accent flex items-center justify-center mb-3 shadow-md rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+              </div>
+              <p class="font-cinzel text-[12px] md:text-[13px] text-mellow-black font-semibold tracking-widest bg-white/95 px-4 py-2 border border-mellow-lightgray shadow-sm">WOOTAEHA SKIN</p>
+            </div>
+          </div>
+
+          <!-- 우측 텍스트 패널 -->
+          <div class="p-8 md:p-10 flex flex-col justify-between bg-white">
+            <div>
+              <h3 class="text-[22px] font-semibold text-mellow-black tracking-wide mb-8">우태하 한승경 피부과</h3>
+              <div class="space-y-4 md:space-y-6 text-[14px] text-mellow-darkgray font-light">
+                <div class="flex">
+                  <span class="w-16 font-medium text-mellow-black shrink-0">주소</span>
+                  <span class="leading-relaxed">서울특별시 강남구 압구정로 123, 4층</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="w-16 font-medium text-mellow-black shrink-0">전화</span>
+                  <span class="font-cinzel text-[16px] font-medium text-mellow-accent">02-1234-5678</span>
+                </div>
+                <div class="flex">
+                  <span class="w-16 font-medium text-mellow-black shrink-0">지하철</span>
+                  <span class="leading-relaxed">압구정로데오역 5번 출구 도보 3분</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="w-16 font-medium text-mellow-black shrink-0">주차</span>
+                  <span class="leading-relaxed">건물 내 발렛 파킹<br><span class="text-[12px] text-mellow-accent mt-1 block font-medium">30분 무료 (이후 추가요금)</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col space-y-3 mt-10">
+              <button onclick="window.open('https://map.kakao.com')" class="w-full text-[13px] tracking-[0.05em] bg-mellow-black text-white py-4 hover:bg-mellow-accent hover:text-white transition-all duration-300 font-medium">카카오맵 길찾기</button>
+              <button onclick="window.open('https://map.naver.com')" class="w-full text-[13px] tracking-[0.05em] border border-mellow-lightgray text-mellow-black bg-white py-4 hover:bg-mellow-bg transition-all duration-300 font-medium">네이버지도</button>
+            </div>
+          </div>
+        </div>
+        
+        <p class="text-[13px] text-mellow-gray font-light mt-4 px-1">※ 자차로 내원 시 건물 전면에서 발렛 파킹 서비스를 이용하실 수 있습니다.</p>
+      </section>
+
+    </div> 
+  </main>
+
+  <!-- 08. 푸터 -->
+  <footer id="footer" class="bg-mellow-black text-[#E8E8E8]">
+    <div class="max-w-[1920px] mx-auto px-6 lg:px-[160px] py-16 grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12 border-b border-white/10">
+      <div>
+        <span class="font-cinzel text-2xl font-semibold tracking-[0.15em] text-white block">WOOTAEHA</span>
+        <span class="font-cinzel text-[10px] tracking-[0.2em] text-mellow-accent font-semibold mt-1 block mb-6">ANSEUNGKYUNG DERMATOLOGY</span>
+        <p class="text-[13px] text-[#A0A0A0] font-light leading-[1.8] max-w-sm">
+          유리처럼 투명한 정직함,<br>50년의 시간이 증명하는 무결한 안전성.
+        </p>
+      </div>
+      <div>
+        <p class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-accent mb-5 uppercase font-medium">Quick Links</p>
+        <ul class="space-y-3 text-[13px] text-[#D0D0D0] font-light">
+          <li><a href="#" class="hover:text-white transition-colors">의료진 안내</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">층별 시설</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">시그니처 시술</a></li>
+          <li><a href="#info" class="hover:text-white transition-colors">공지사항</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-accent mb-5 uppercase font-medium">Contact Us</p>
+        <ul class="space-y-3 text-[13px] text-[#D0D0D0] font-light">
+          <li class="font-cinzel text-[14px] text-white font-medium">02-1234-5678</li>
+          <li class="font-cinzel">hello@wootaeha.kr</li>
+          <li>평일 10:00 – 19:00</li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-cinzel text-[12px] tracking-[0.2em] text-mellow-accent mb-5 uppercase font-medium">Follow</p>
+        <div class="flex space-x-3">
+          <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center text-[11px] font-cinzel hover:bg-mellow-accent hover:border-mellow-accent hover:text-white transition-colors rounded-full">IG</a>
+          <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center text-[11px] font-cinzel hover:bg-mellow-accent hover:border-mellow-accent hover:text-white transition-colors rounded-full">BL</a>
+          <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center text-[11px] font-cinzel hover:bg-mellow-accent hover:border-mellow-accent hover:text-white transition-colors rounded-full">YT</a>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-[1920px] mx-auto px-6 lg:px-[160px] py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <p class="text-[12px] text-[#808080] font-light leading-relaxed">
+        (주)우태하한승경피부과 · 대표원장 한승경 · 사업자등록번호 123-45-67890 · 서울특별시 강남구 압구정로 123, 4층
+      </p>
+      <p class="font-cinzel text-[11px] text-[#808080] font-medium tracking-widest">
+        © 1975–2026 WOOTAEHA. ALL RIGHTS RESERVED.
+      </p>
+    </div>
+  </footer>
+
+  <!-- 09. 스크립트 -->
+  <script>
+    const navLinks = document.querySelectorAll('#navLinks a');
+    const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
+    
+    // 배너가 화면에 고정 배치되므로 배너를 숨기는 스크립트는 완전히 삭제하였습니다. (네비게이션 액티브 효과만 유지)
+    window.addEventListener('scroll', () => {
+      let activeIndex = 0;
+      sections.forEach((sec, i) => {
+        if (sec && sec.getBoundingClientRect().top <= 150) activeIndex = i;
+      });
+      navLinks.forEach((a, i) => a.classList.toggle('active', i === activeIndex));
+    });
+
+    const track = document.getElementById('facilityTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    if (track && prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        const cardWidth = track.firstElementChild.offsetWidth + 24;
+        track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        const cardWidth = track.firstElementChild.offsetWidth + 24;
+        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      });
+    }
+
+    const floorItems = document.querySelectorAll('.floor-item');
+    const floorImages = document.querySelectorAll('#floorImageContainer img');
+
+    if (floorItems.length > 0 && floorImages.length > 0) {
+      floorItems.forEach(item => {
+        const activateFloor = () => {
+          floorItems.forEach(el => {
+            const num = el.querySelector('.floor-number');
+            const title = el.querySelector('h3');
+            const icon = el.querySelector('span:last-child');
+            
+            num.classList.remove('text-mellow-black');
+            num.classList.add('text-mellow-lightgray');
+            
+            title.classList.remove('text-mellow-black', 'font-medium');
+            title.classList.add('text-mellow-gray', 'font-normal');
+            
+            icon.classList.remove('opacity-100', 'translate-x-1');
+            icon.classList.add('opacity-0');
+          });
+          
+          const activeNum = item.querySelector('.floor-number');
+          const activeTitle = item.querySelector('h3');
+          const activeIcon = item.querySelector('span:last-child');
+          
+          activeNum.classList.remove('text-mellow-lightgray');
+          activeNum.classList.add('text-mellow-black');
+          
+          activeTitle.classList.remove('text-mellow-gray', 'font-normal');
+          activeTitle.classList.add('text-mellow-black', 'font-medium');
+          
+          activeIcon.classList.remove('opacity-0');
+          activeIcon.classList.add('opacity-100', 'translate-x-1');
+
+          const targetId = item.getAttribute('data-target');
+          floorImages.forEach(img => {
+            if (img.id === targetId) {
+              img.classList.remove('opacity-0', 'z-0');
+              img.classList.add('opacity-100', 'z-10');
+            } else {
+              img.classList.remove('opacity-100', 'z-10');
+              img.classList.add('opacity-0', 'z-0');
+            }
+          });
+        };
+
+        item.addEventListener('mouseenter', activateFloor);
+        item.addEventListener('click', activateFloor);
+      });
+    }
+  </script>
+</body>
+</html>
