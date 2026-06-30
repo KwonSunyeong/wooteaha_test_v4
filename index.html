@@ -77,7 +77,7 @@
 </head>
 <body class="font-sans selection:bg-mellow-accent selection:text-white">
 
-  <!-- 01. 헤더 -->
+  <!-- 01. 헤더 (원본 복구) -->
   <header id="header" class="fixed top-0 left-0 w-full z-50 px-6 lg:px-[160px] py-6 flex justify-between items-center bg-white/95 backdrop-blur-md border-b border-mellow-lightgray transition-all duration-300">
     <div class="flex flex-col">
       <span class="font-cinzel text-xl md:text-2xl font-semibold tracking-[0.2em] text-mellow-black">WOOTEAHA SKIN</span>
@@ -93,56 +93,55 @@
 
   <main class="relative w-full pt-28">
 
-    <!-- 02. 메인 히어로 섹션 (테스트 사이트 V3 레이아웃 반영 - 2단 분할 및 영상 하단 배너 배치) -->
-    <section id="hero" class="relative w-full pt-12 pb-24 lg:pt-20 lg:pb-32 px-6 lg:px-[160px] bg-white overflow-hidden">
+    <!-- 02. 메인 히어로 섹션 (요청하신 레이아웃 반영: 1280px / 100vh 자동 맞춤 / 영상과 배너 간격 추가) -->
+    <section id="hero" class="relative w-full h-[calc(100vh-112px)] min-h-[750px] flex flex-col justify-center px-6 lg:px-[160px] pb-12 bg-white overflow-hidden">
       
       <!-- 백그라운드 텍스트 -->
       <div class="hidden md:block absolute right-[-2%] top-[15%] font-cinzel text-[22vw] font-bold text-[#F5F5F5] select-none pointer-events-none -z-10 leading-none">
         1975
       </div>
-      
-      <div class="max-w-[1920px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-center lg:items-start z-10 relative">
+     
+      <!-- 콘텐츠 최대 너비 1280px 제한 및 가운데 정렬 -->
+      <div class="z-10 w-full max-w-[1280px] mx-auto h-full flex flex-col pt-4">
         
-        <!-- 좌측: 텍스트 콘텐츠 -->
-        <div class="w-full lg:w-1/2 flex flex-col justify-center h-full pt-4 lg:pt-10">
-          <div class="inline-flex items-center space-x-4 mb-8 md:mb-10 group cursor-pointer">
+        <!-- 타이틀 및 텍스트 영역 (원본 복구) -->
+        <div class="w-full shrink-0">
+          <div class="inline-flex items-center space-x-4 mb-6 md:mb-8 group cursor-pointer">
             <div class="w-10 h-[1px] bg-mellow-black group-hover:w-16 transition-all duration-500"></div>
             <span class="font-cinzel text-[12px] md:text-[14px] tracking-[0.25em] text-mellow-accent uppercase font-medium">The 50-Year Heritage</span>
           </div>
 
-          <h1 class="text-[36px] md:text-[56px] lg:text-[68px] font-light text-mellow-black leading-[1.25] tracking-tight mb-8 md:mb-10">
+          <h1 class="text-[36px] md:text-[56px] lg:text-[68px] font-light text-mellow-black leading-[1.25] tracking-tight mb-6 md:mb-8">
             1975년 이래 피부과 진료를 이어온<br>
             <span class="text-mellow-accent font-semibold">피부과의 자존심.</span>
           </h1>
 
-          <div class="flex flex-col gap-10 border-l border-mellow-lightgray pl-6 mb-10 lg:mb-0">
-            <p class="text-[15px] md:text-[17px] text-mellow-darkgray font-light leading-[1.8] max-w-xl tracking-wide">
-              피부 본연의 결을 맑게 깨우는 정교한 메디컬 케어와 타협 없는 안전을 지향합니다.<br class="hidden xl:block">
-              오직 피부의 본질에만 집중하는 정직함을 기준으로, 수십 년간 대를 이어 찾아오는<br class="hidden xl:block">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-l border-mellow-lightgray pl-6 mb-8">
+            <p class="text-[15px] md:text-[17px] text-mellow-darkgray font-light leading-[1.8] max-w-2xl tracking-wide">
+              피부 본연의 결을 맑게 깨우는 정교한 메디컬 케어와 타협 없는 안전을 지향합니다.<br>
+              오직 피부의 본질에만 집중하는 정직함을 기준으로, 수십 년간 대를 이어 찾아오는<br>
               가장 신뢰할 수 있는 공간입니다.
             </p>
             
-            <div>
-              <a href="#" class="inline-flex items-center space-x-3 text-[13px] tracking-[0.2em] text-mellow-black font-medium uppercase border-b border-mellow-black pb-1 hover:text-mellow-accent hover:border-mellow-accent transition-all">
-                <span class="font-cinzel">Explore History</span>
-                <span>➔</span>
-              </a>
-            </div>
+            <a href="#" class="inline-flex items-center space-x-3 text-[13px] tracking-[0.2em] text-mellow-black font-medium uppercase border-b border-mellow-black pb-1 hover:text-mellow-accent hover:border-mellow-accent transition-all shrink-0">
+              <span class="font-cinzel">Explore History</span>
+              <span>➔</span>
+            </a>
           </div>
         </div>
 
-        <!-- 우측: 영상 및 배너 영역 -->
-        <div class="w-full lg:w-1/2 flex flex-col gap-6">
+        <!-- 미디어 영역 (영상 + 배너) -->
+        <div class="flex flex-col gap-6 w-full flex-1 min-h-0">
           
-          <!-- 영상 영역 -->
-          <div class="relative w-full aspect-[4/3] md:aspect-video bg-mellow-bg overflow-hidden border border-mellow-lightgray shadow-sm group">
+          <!-- 영상 (flex-1 속성으로 브라우저의 남은 공간만큼 알아서 유동적으로 채워짐) -->
+          <div class="w-full relative bg-mellow-bg overflow-hidden border border-mellow-lightgray shadow-sm group flex-1 min-h-[150px]">
             <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-all duration-700">
               <source src="https://assets.mixkit.co/videos/preview/mixkit-water-ripples-in-a-pool-1188-large.mp4" type="video/mp4">
             </video>
           </div>
 
-          <!-- 하단 미용 시술 배너 (영상 하단으로 편입) -->
-          <div id="heroBanner" class="w-full bg-white border border-mellow-lightgray p-6 md:p-8 flex flex-col xl:flex-row items-start xl:items-center justify-between shadow-sm group cursor-pointer hover:border-mellow-accent transition-all duration-700">
+          <!-- 하단 미용 시술 배너 (영상 아래 띄어서 배치, 고정 높이) -->
+          <div id="heroBanner" class="w-full bg-white border border-mellow-lightgray p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between shadow-sm group cursor-pointer hover:border-mellow-accent transition-all duration-700 shrink-0">
             <div class="flex items-center gap-5">
               <div class="w-12 h-12 bg-mellow-accent/10 border border-mellow-accent/20 flex items-center justify-center shrink-0 rounded-full">
                 <span class="font-cinzel text-mellow-accent text-lg font-semibold">A</span>
@@ -152,8 +151,8 @@
                 <h3 class="text-[17px] md:text-[19px] text-mellow-black font-medium">피부 본연의 광채를 깨우는 프리미엄 뷰티 솔루션</h3>
               </div>
             </div>
-            <div class="mt-5 xl:mt-0 flex items-center gap-4 w-full xl:w-auto justify-end">
-              <span class="text-[14px] text-mellow-darkgray group-hover:text-mellow-accent transition-colors font-light whitespace-nowrap">이달의 프로모션 확인하기</span>
+            <div class="mt-5 md:mt-0 flex items-center gap-4 w-full md:w-auto justify-end">
+              <span class="text-[14px] text-mellow-darkgray group-hover:text-mellow-accent transition-colors font-light">이달의 프로모션 확인하기</span>
               <div class="w-10 h-10 border border-mellow-lightgray rounded-full flex items-center justify-center group-hover:bg-mellow-accent group-hover:border-mellow-accent group-hover:text-white transition-all duration-300">
                 <span class="text-sm">➔</span>
               </div>
@@ -161,11 +160,11 @@
           </div>
 
         </div>
-        
+
       </div>
     </section>
 
-    <!-- 03. 통계 섹션 -->
+    <!-- 03. 통계 섹션 (이하 섹션들 모두 원본 유지) -->
     <div class="px-6 lg:px-[160px] pb-16 max-w-[1920px] mx-auto bg-white pt-10">
       <section id="stats" class="mb-32">
         <div class="grid grid-cols-2 md:grid-cols-4 border-t border-b border-mellow-lightgray">
@@ -214,7 +213,6 @@
       <div class="w-full flex-1 min-w-0 relative">
         <div id="facilityTrack" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-8 align-right-edge">
           
-          <!-- 카드 -->
           <div class="bg-white border border-mellow-lightgray w-[80vw] sm:w-[360px] shrink-0 snap-start group cursor-pointer flex flex-col hover:border-mellow-accent transition-colors duration-300">
             <div class="img-zoom h-[320px] overflow-hidden bg-mellow-bg relative">
               <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="피코슈어 프로" class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-all duration-700" />
@@ -520,7 +518,6 @@
     const navLinks = document.querySelectorAll('#navLinks a');
     const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
     
-    // 배너가 화면에 고정 배치되므로 배너를 숨기는 스크립트는 완전히 삭제하였습니다. (네비게이션 액티브 효과만 유지)
     window.addEventListener('scroll', () => {
       let activeIndex = 0;
       sections.forEach((sec, i) => {
